@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundedMask;
     private Rigidbody2D rigidbody;
     private bool previouslyGrounded;
+    // private bool flipped;
     
     void Awake() {
         rigidbody = GetComponent<Rigidbody2D>();
@@ -23,11 +24,20 @@ public class PlayerController : MonoBehaviour
         }
 
         float walkMovement = Input.GetAxis("Horizontal");
-        rigidbody.AddForce(Vector2.right * walkMovement * walkVelocity * Time.deltaTime, ForceMode2D.Impulse);
-        transform.localEulerAngles = new Vector3(0, Mathf.Clamp(walkMovement * 180, -180, 0), 0);
+        rigidbody.velocity = Vector2.right * walkMovement * walkVelocity + Vector2.up * rigidbody.velocity.y;
+        // transform.localEulerAngles = new Vector3(0, Mathf.Clamp(walkMovement * 180, -180, 0), 0);
         if (currentlyGrounded && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space))) {
             rigidbody.velocity += Vector2.up * jumpVelocity;
-            bwheheheehorgouer.localScale = new Vector2(0.2f, 2.5f);
+            bwheheheehorgouer.localScale = new Vector2(0.2f, 1.75f);
+        }
+
+        if (walkMovement < 0) {
+            // flipped = true;
+            transform.localEulerAngles = new Vector3(0, 180, 0);
+        }
+        else if (walkMovement > 0) {
+            // flipped = false;
+            transform.localEulerAngles = Vector3.zero;
         }
 
         previouslyGrounded = currentlyGrounded;

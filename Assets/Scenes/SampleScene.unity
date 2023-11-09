@@ -530,7 +530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b580ebed62252d74dafef5e46687b123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkVelocity: 10
+  walkVelocity: 5
   jumpVelocity: 10
   bwheheheehorgouer: {fileID: 263623229}
   groundCheck: {fileID: 754529790}
