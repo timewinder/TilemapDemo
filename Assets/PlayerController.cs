@@ -45,6 +45,6 @@ public class PlayerController : MonoBehaviour
     }
     
     public bool IsGrounded() {
-        return Physics2D.OverlapBox(groundCheck.position, new Vector2(0.9f, 0.01f), 0, groundedMask);
+        return Physics2D.OverlapBox(groundCheck.position, new Vector2(0.9f, 0.1f), 0, groundedMask);
     }
 }
